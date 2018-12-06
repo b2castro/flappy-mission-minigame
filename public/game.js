@@ -1,7 +1,7 @@
 // current state of the game
 let game_state = 0;
 var theme_music = document.getElementById("myAudio");
-let game_sound = 0;
+
 
 // player elemets: current score, health, and max health
 let score = 0;
@@ -147,7 +147,7 @@ function mousePressed() {
   if (game_state==0) { 
     startGame();
     theme_music.play();
-    game_sound = 1;
+    
   }
   if (game_state==2) {
     restart();
