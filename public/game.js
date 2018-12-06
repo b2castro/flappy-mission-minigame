@@ -19,7 +19,7 @@ let wallColors;
 let walls = [];
 const min_wall_gap_height = 50;
 const max_wall_gap_height = 30;
-var wall_velocity = 4.5;
+var wall_velocity = 6;
 const interval = 1600;
 const width_wall = 80; 
 
