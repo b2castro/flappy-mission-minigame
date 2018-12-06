@@ -1,6 +1,7 @@
 // current state of the game
-let game_state = 0;;
+let game_state = 0;
 var theme_music = document.getElementById("myAudio");
+let game_sound = 0;
 
 // player elemets: current score, health, and max health
 let score = 0;
@@ -18,20 +19,21 @@ let wallColors;
 let walls = [];
 const min_wall_gap_height = 50;
 const max_wall_gap_height = 30;
-const wall_velocity = 6.2;
-const interval = 1000;
-const width_wall = 80;
+var wall_velocity = 4.5;
+const interval = 1600;
+const width_wall = 80; 
 
 /**** Initial Game Setups *****/
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(500, 500);
   ballColor = color(random(100, 253),random(100, 255),random(100, 255));
   wallColors = color(random(100, 253),random(100, 255),random(100, 255));
 }
 
 function draw() {
   if (game_state == 0) { 
-    smooth();   
+    smooth();
+    background(254,255,255);
     textAlign(CENTER);  
     fill(255,100,150); 
     textSize(20); 
@@ -76,8 +78,8 @@ function wall_draw(index) {
   let gapWallHeight = wall[3];
   noStroke(1);
   fill(wallColors);
-  rect(gapWallX, 0, gapwidth_wall, gapWallY, random(15,30), random(15,30), random(15,30), random(15,30));
-  rect(gapWallX, gapWallY+gapWallHeight, gapwidth_wall, height-(gapWallY+gapWallHeight), random(15,30), random(15,30), random(15,30), random(15,30));
+  rect(gapWallX, 0, gapwidth_wall, gapWallY, 0, 0, 0, 0);
+  rect(gapWallX, gapWallY+gapWallHeight, gapwidth_wall, height-(gapWallY+gapWallHeight), 0, 0, 0, 0);
 }
 
 function move_wall(index) {
@@ -128,7 +130,6 @@ function collision_check(index) {
     wallScored=1;
     wall[4]=1;
     score++;
-     
   }
 }
 
@@ -145,11 +146,12 @@ function mousePressed() {
   // if we are on the initial screen when clicked, start the game 
   if (game_state==0) { 
     startGame();
-    theme_music.play();  
+    theme_music.play();
+    game_sound = 1;
   }
   if (game_state==2) {
     restart();
-    theme_music.play();  
+    theme_music.play();
   }
 }
 
@@ -180,7 +182,7 @@ function gameplayScreen() {
   textAlign(CENTER);
   fill(0);
   textSize(30); 
-  text(score, windowWidth/2, 50 );    
+  text(score, width/2, 50 );    
     
   //Draw Ball       
   fill(ballColor);
